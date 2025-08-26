@@ -16,10 +16,12 @@ export default function ColorFlipper() {
           Home
         </a>
       </div>
-      <div style={{ backgroundColor: color, height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <button onClick={changeColor} style={{ padding: "20px", fontSize: "24px" }}>
-          Change Color
-        </button>
+      <div style={{ backgroundColor: color, height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }} role="none" onClick={changeColor}>
+        <h3 style={{ userSelect: "none" }} >
+        Click to change color
+        </h3>
+        {/* <button onClick={changeColor} style={{ padding: "20px", fontSize: "24px" }}>
+        </button> */}
       </div>
 
     </div>

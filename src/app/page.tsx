@@ -2,27 +2,62 @@
 import React from "react"; 
 
 export default function Home() {
-
-  let [currentValue, setCurrentValue] = React.useState("");
+  
+  let [resultValue, setResultValue] = React.useState<number>(0);
   let [currentOperation, setCurrentOperation] = React.useState("");
-  let [previousValue, setPreviousValue] = React.useState("");
+
+  let [secondNumber, setSecondNumber] = React.useState<number>(0);
+  let [firstNumber, setFirstNumber] = React.useState<number>(0);
 
   const clearDisplay = () => {
     console.log("Clear display");
-    setCurrentValue("");
     setCurrentOperation("");
-    setPreviousValue("");
+
+    setFirstNumber(0);
+    setSecondNumber(0);
+    setResultValue(0);
   }
 
   const appendNumber = (value: string) => {
-    currentValue += value;
-    setCurrentValue(currentValue);
+    
+    if (currentOperation) {
+      setSecondNumber(+`${secondNumber||''}${value}`)
+    }
+
+    if (secondNumber === 0 && !currentOperation) {
+      setFirstNumber(+`${firstNumber||''}${value}`)
+    }
+
+    // setDisplayValue(`${firstNumber||value}${currentOperation}${secondNumber||''}`)
+
   }
 
-  const appendOperation = (value: string) => {}
+  const appendOperation = (value: string) => {
+    setCurrentOperation(value)
+  }
 
   const calculateResult = () => {
+    console.log(">>", currentOperation);
     console.log("Calculate result");
+    let calculatedValue = 0;
+    switch (currentOperation) {
+      case "+":
+        calculatedValue = firstNumber + secondNumber;
+        break;
+      case "-":
+        calculatedValue = firstNumber - secondNumber;
+        break;
+      case "÷":
+        calculatedValue = firstNumber / secondNumber;
+        break;
+      case "*":
+        calculatedValue = firstNumber * secondNumber;
+        break;
+      default:
+        break;
+      }
+    setResultValue(calculatedValue)
+
   }
 
   const firstLayerButtons = [
@@ -75,9 +110,9 @@ export default function Home() {
         </h1>
         <div className="w-full max-w-md">
           <input
-            type="number"
+            type="string"
             placeholder="0"
-            value={currentValue}
+            value={resultValue || `${firstNumber||''}${currentOperation}${secondNumber||''}`}
             readOnly
             className="w-full h-[60px] bg-gray-100 rounded-lg shadow-md px-4 text-right text-2xl text-black"
           />
