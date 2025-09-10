@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 
 export default function ColorFlipper() {
@@ -12,9 +13,9 @@ export default function ColorFlipper() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col items-center mt-4">
-        <a href="/" className="text-blue-500 hover:underline">
+        <Link href="/" className="text-blue-500 hover:underline">
           Home
-        </a>
+        </Link>
       </div>
       <div style={{ backgroundColor: color, height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }} role="none" onClick={changeColor}>
         <h3 style={{ userSelect: "none" }} >
