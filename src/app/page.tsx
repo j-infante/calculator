@@ -1,13 +1,14 @@
 "use client";
+import Link from "next/link";
 import React from "react"; 
 
 export default function Home() {
   
-  let [resultValue, setResultValue] = React.useState<number>(0);
-  let [currentOperation, setCurrentOperation] = React.useState("");
+  const [resultValue, setResultValue] = React.useState<number>(0);
+  const [currentOperation, setCurrentOperation] = React.useState("");
 
-  let [secondNumber, setSecondNumber] = React.useState<number>(0);
-  let [firstNumber, setFirstNumber] = React.useState<number>(0);
+  const [secondNumber, setSecondNumber] = React.useState<number>(0);
+  const [firstNumber, setFirstNumber] = React.useState<number>(0);
 
   const clearDisplay = () => {
     console.log("Clear display");
@@ -100,9 +101,9 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
 
         <div>
-          <a href="/colorflipper" className="text-blue-500 hover:underline">
+          <Link href="/colorflipper" className="text-blue-500 hover:underline">
             Color Flipper
-          </a>
+          </Link>
         </div>
 
         <h1 className="text-4xl font-bold text-center sm:text-left">
