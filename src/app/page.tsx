@@ -1,152 +1,53 @@
 "use client";
 import Link from "next/link";
 import React from "react"; 
+import { CalculatorIcon, PaintBrushIcon } from '@heroicons/react/24/solid'
 
 export default function Home() {
-  
-  const [resultValue, setResultValue] = React.useState<number>(0);
-  const [currentOperation, setCurrentOperation] = React.useState("");
-
-  const [secondNumber, setSecondNumber] = React.useState<number>(0);
-  const [firstNumber, setFirstNumber] = React.useState<number>(0);
-
-  const clearDisplay = () => {
-    console.log("Clear display");
-    setCurrentOperation("");
-
-    setFirstNumber(0);
-    setSecondNumber(0);
-    setResultValue(0);
-  }
-
-  const appendNumber = (value: string) => {
-    
-    if (currentOperation) {
-      setSecondNumber(+`${secondNumber||''}${value}`)
-    }
-
-    if (secondNumber === 0 && !currentOperation) {
-      setFirstNumber(+`${firstNumber||''}${value}`)
-    }
-
-    // setDisplayValue(`${firstNumber||value}${currentOperation}${secondNumber||''}`)
-
-  }
-
-  const appendOperation = (value: string) => {
-    setCurrentOperation(value)
-  }
-
-  const calculateResult = () => {
-    console.log(">>", currentOperation);
-    console.log("Calculate result");
-    let calculatedValue = 0;
-    switch (currentOperation) {
-      case "+":
-        calculatedValue = firstNumber + secondNumber;
-        break;
-      case "-":
-        calculatedValue = firstNumber - secondNumber;
-        break;
-      case "÷":
-        calculatedValue = firstNumber / secondNumber;
-        break;
-      case "*":
-        calculatedValue = firstNumber * secondNumber;
-        break;
-      default:
-        break;
-      }
-    setResultValue(calculatedValue)
-
-  }
-
-  const firstLayerButtons = [
-    { label: "C", action: () => clearDisplay() },
-    { label: "÷", action: () => appendOperation("÷") },
-    { label: "*", action: () => appendOperation("*") },
-    { label: "-", action: () => appendOperation("-") },
-  ];
-
-  const secondLayerButtons = [
-    { label: "7", action: () => appendNumber("7") },
-    { label: "8", action: () => appendNumber("8") },
-    { label: "9", action: () => appendNumber("9") },
-    { label: "+", action: () => appendOperation("+") },
-  ];
-
-  const thirdLayerButtons = [
-    { label: "4", action: () => appendNumber("4") },
-    { label: "5", action: () => appendNumber("5") },
-    { label: "6", action: () => appendNumber("6") },
-    { label: "=", action: () => calculateResult() },
-  ];
-
-  const fourthLayerButtons = [
-    { label: "1", action: () => appendNumber("1") },
-    { label: "2", action: () => appendNumber("2") },
-    { label: "3", action: () => appendNumber("3") },
-    { label: "0", action: () => appendNumber("0") },
-  ];
-
-  const calculatorButtons = {
-    firstLayer: firstLayerButtons,
-    secondLayer: secondLayerButtons,
-    thirdLayer: thirdLayerButtons,
-    fourthLayer: fourthLayerButtons,
-  }
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-
-        <div>
-          <Link href="/colorflipper" className="text-blue-500 hover:underline">
-            Color Flipper
-          </Link>
-        </div>
-
-        <h1 className="text-4xl font-bold text-center sm:text-left">
-          Calculator
-        </h1>
-        <div className="w-full max-w-md">
-          <input
-            type="string"
-            placeholder="0"
-            value={resultValue || `${firstNumber||''}${currentOperation}${secondNumber||''}`}
-            readOnly
-            className="w-full h-[60px] bg-gray-100 rounded-lg shadow-md px-4 text-right text-2xl text-black"
-          />
-        </div>
-        {
-          Object.values(calculatorButtons).map((layer, index) => (
-            <div key={index} className="flex flex-wrap gap-[16px] justify-center sm:justify-start">
-              {
-                layer.map((button, buttonIndex) => (
-                  <button
-                    key={buttonIndex}
-                    className="w-[60px] h-[60px] bg-gray-200 rounded-lg shadow-md hover:bg-gray-300 transition-colors text-black text-2xl"
-                    onClick={() => button.action()}
-                  >
-                    {button.label}
-                  </button>
-                ))
-              }
+        {/* <header className="line-b fixed inset-x-0 top-0 z-20 mr-[calc(100%-100vw)] flex h-14 items-center 
+        justify-between bg-white px-4 text-black after:-bottom-px sm:px-6 dark:bg-gray-950 dark:text-white">
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold">Fun Code Collections</h1>
+          </div>
+          <div className="flex items-center justify-end gap-5 max-md:hidden lg:gap-6 ">
+            <div>
+              <Link href="/login" >Login</Link>
             </div>
-          ))
-        }
-        {/* <div className=" flex flex-wrap gap-[16px] justify-center sm:justify-start">
-          {
-            firstLayerButtons.map((button, index) => (
-              <button
-                key={index}
-                className="w-[60px] h-[60px] bg-gray-200 rounded-lg shadow-md hover:bg-gray-300 transition-colors text-black"
-              >
-                {button.label}
-              </button>
-            ))
-          }
-        </div> */}
+          </div>
+        </header> */}
+        <header className="line-b fixed inset-x-0 top-0 z-20 mr-[calc(100%-100vw)] flex h-14 items-center bg-white px-4 text-black after:-bottom-px sm:px-6 dark:bg-gray-950 dark:text-white">
+          {/* Left Side */}
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold">Fun Code Collections</h1>
+          </div>
+
+          {/* Right Side: Added ml-auto to push this block to the right */}
+          <div className="ml-auto flex items-center justify-end gap-5 max-md:hidden lg:gap-6">
+            <div>
+              <Link href="/login" >Login</Link>
+            </div>
+          </div>
+        </header>
+        <div className="flex flex-row gap-[32px] row-start-2 items-center sm:items-start">
+          <div className="relative rounded-3xl bg-gray-800 p-8 ring-1 ring-white/10 sm:p-10">
+            <PaintBrushIcon className="h-6 w-6 text-white" />
+            <Link href="/colorflipper" className="text-blue-500 hover:underline">
+              Color Flipper
+            </Link>
+          </div>
+          <div className="relative rounded-3xl bg-gray-800 p-8 ring-1 ring-white/10 sm:p-10">
+            <div>
+              <CalculatorIcon className="h-6 w-6 text-white" />
+            </div>
+            <Link href="/calculator" className="text-blue-500 hover:underline">
+              Calculator
+            </Link>
+          </div>
+        </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center" />
     </div>

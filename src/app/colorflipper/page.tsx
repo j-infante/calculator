@@ -21,10 +21,7 @@ export default function ColorFlipper() {
         <h3 style={{ userSelect: "none" }} >
         Click to change color
         </h3>
-        {/* <button onClick={changeColor} style={{ padding: "20px", fontSize: "24px" }}>
-        </button> */}
       </div>
-
     </div>
   );
 }
