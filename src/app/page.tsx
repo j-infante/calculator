@@ -48,6 +48,14 @@ export default function Home() {
             </Link>
           </div>
         </div>
+            <div className="relative rounded-3xl bg-gray-800 p-8 ring-1 ring-white/10 sm:p-10">
+            <div>
+              <CalculatorIcon className="h-6 w-6 text-white" />
+            </div>
+            <Link href="/user" className="text-blue-500 hover:underline">
+              User list
+            </Link>
+          </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center" />
     </div>
